@@ -1,0 +1,1304 @@
+@charset "UTF-8";
+
+// color
+$color-white: #fff;
+$color-black: #000;
+$color-bg-black: #231815;
+$color-pink: #ff7bac;
+$color-green: #66bbaa;
+$color-bg-green: #d2fff6;
+$color-line-blue: #dae5e3;
+
+$color-alpha-green: rgba(210, 255, 246, 0.5);
+
+// breakpoint
+$breakpoint-pc: 1024px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+
+// font-family
+$font-family-primary: 'M PLUS Rounded 1c', sans-serif;
+$font-family-secondary: 'Kiwi Maru', sans-serif;
+
+// mixin
+@mixin pc {
+  @media (max-width: $breakpoint-pc) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+// reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+  font-family: $font-family-primary;
+  color: $color-black;
+  font-weight: 300;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all .5s;
+}
+
+a:hover{
+  opacity: .7;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// number
+:root{
+  counter-reset: feature_num 0;
+
+}
+
+// common
+.inner {
+  width: 100%;
+  max-width: $breakpoint-pc;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+  .card{
+    flex: 0 0 calc(33.333% - 13.33333px);
+    border: 1px solid $color-line-blue;
+    background-color: $color-white;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    @include tablet {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+.tag__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.sp-only{
+  display: none;
+  @include tablet{
+    display: block;
+  }
+}
+
+.pc-only{
+  @include tablet{
+    display: none;
+  }
+}
+
+//header
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: $color-white;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $breakpoint-pc;
+    margin: 0 auto;
+    padding: 0;
+    @include pc {
+      padding: 4px 6px 6px 10px;
+    }
+  }
+  &__logo {
+    a {
+      
+      text-align: center;
+      margin-top: 21px;
+      @include tablet {
+        margin-top: 0;
+      }
+      img {
+        width: clamp(9.25rem, -6.205rem + 63.41vw, 34.375rem);
+        height: auto;
+        object-fit: contain;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        display: block;
+        letter-spacing: 0.78em;
+        line-height: 1;
+        margin-top: 10px;
+        @include tablet {
+          display: none;
+        }
+      }
+    }
+  }
+  &__nav {
+    ul {
+      display: flex;
+      gap: 0;
+      padding: 21px 0;
+      @include tablet{
+        padding: 0;
+      }
+      li {
+        a {
+          width: clamp(2.5rem, 0.962rem + 6.31vw, 5rem);
+          height: clamp(2.5rem, 0.962rem + 6.31vw, 5rem);
+          display: block;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main{
+  margin-top: 123px;
+  @include tablet {
+    margin-top: 50px;
+  }
+  &__head {
+    background: url('../images/bg__main-head--pc.webp') no-repeat center center / cover;
+    background-size: auto 100%;
+    padding-bottom: clamp(1.625rem, 1.087rem + 2.21vw, 2.5rem);
+    @include tablet {
+      background: url('../images/bg__main--sp.webp') repeat-y center top / cover;
+      background-size: 100% auto;
+    }
+    @include mobile {
+      background: url('../images/bg__main--sp.webp') repeat-y center top / cover;
+      background-size: 720px auto;
+    }
+  }
+  &__body{
+    background: $color-white;
+    padding-bottom: 50px;
+  }
+  &__foot{
+    background: url('../images/bg__main-foot--pc.webp') no-repeat center center / cover;
+    background-size: auto 100%;
+    padding-top: clamp(1.875rem, -5.238rem + 29.18vw, 13.438rem);
+    padding-bottom: clamp(4.688rem, -0.118rem + 19.72vw, 12.5rem);
+    @include tablet {
+      background: url('../images/bg__main--sp.webp') repeat-y center top / cover;
+      background-size: 100% auto;
+    }
+    @include mobile {
+      background: url('../images/bg__main--sp.webp') repeat-y center top / cover;
+      background-size: 720px auto;
+    }
+  }
+}
+
+.cta{
+  background: url('../images/bg__cta--pc.webp') no-repeat center center / cover;
+  background-size: auto 100%;
+  padding-top: clamp(1.375rem, -1.624rem + 12.3vw, 6.25rem);
+  padding-bottom: clamp(1.938rem, -1.215rem + 12.93vw, 7.063rem);
+  @include tablet{
+    background: url('../images/bg__cta--sp.webp') no-repeat center center / cover;
+  background-size: auto 100%;
+  }
+}
+
+.hero{
+  width: 100%;
+  aspect-ratio: 1024 / 606;
+  padding-top: 116px;
+  padding-right: 46%;
+  background: url('../images/fig__hero--pc.webp') no-repeat;
+  background-position: center right;
+  background-size: auto calc(100% - 20px);
+  @include tablet {
+    aspect-ratio: 390 / 734;
+    padding-top: 44px;
+    padding-right: 0;
+    padding-bottom: 68.8%;
+    background: url('../images/fig__hero--sp.webp') no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
+  }
+  &__body{
+    @include tablet{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  &__copy{
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    padding-right: 6%;
+    @include tablet{
+      display: block;
+      padding-right: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid $color-green;
+    }
+    &-secondary{
+      white-space: nowrap;
+      font-family: $font-family-secondary;
+      font-weight: 400;
+      line-height: 1;
+      text-align: center;
+      font-size: clamp(1rem, 0.154rem + 3.47vw, 2.375rem);
+    }
+    &-primary{
+      white-space: nowrap;
+      font-family: $font-family-secondary;
+      font-weight: 500;
+      line-height: 1;
+      text-align: center;
+      font-size: clamp(1.375rem, 0.222rem + 4.73vw, 3.25rem);
+      color: $color-green;
+      margin-top: 12px;
+      @include tablet{
+        margin-top: 6px;
+      }
+      span{
+        color: $color-pink;
+      }
+    }
+    &-tertiary{
+      white-space: nowrap;
+      font-family: $font-family-secondary;
+      line-height: 1;
+      text-align: center;
+      font-size: clamp(0.688rem, 0.111rem + 2.37vw, 1.625rem);
+      margin-top: 17px;
+      @include tablet{
+        font-weight: 400;
+        margin-top: 6px;
+      }
+    }
+  }
+  &__title{
+    width: 100%;
+    margin-top: 30px;
+    padding-left: 10px;
+    border-top: 1px solid $color-green;
+    @include tablet{
+      margin-top: 0;
+      padding-left: 0;
+      border-top: none;
+    }
+    &-sub{
+      margin-top: 33px;
+      white-space: nowrap;
+      font-family: $font-family-secondary;
+      line-height: 1;
+      font-size: clamp(0.688rem, 0.111rem + 2.37vw, 1.625rem);
+      @include tablet{
+        margin-top: 14px;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+    &-main{
+      text-align: center;
+      img{
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        @include tablet{
+          width: 82%;
+          margin: 15px auto auto;
+        }
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        display: block;
+        letter-spacing: 0.78em;
+        line-height: 1;
+        margin-top: 10px;
+        @include tablet {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.lead{
+  margin-top: 70px;
+  @include tablet{
+    margin-top: 95px;
+  }
+  &__head{
+    h2{
+      font-family: $font-family-secondary;
+      font-size: clamp(1rem, 0.423rem + 2.37vw, 1.938rem);
+      font-weight: 400;
+      text-align: center;
+      span{
+        color: $color-pink;
+        font-weight: 500;
+      }
+    }
+  }
+  &__body{
+    margin-top: 18px;
+    padding: 0 5%;
+    @include tablet{
+      margin-top: 8px;
+      padding: 0 12.8%;
+      gap: 10px;
+    }
+  }
+  &__card{
+    padding: 21px 10px 120px;
+    @include tablet{
+      padding: 6px 6px;
+    }
+    &--001{
+      @extend .lead__card;
+      background: $color-white url('../images/illust__lead--001.webp');
+      background-repeat: no-repeat;
+      background-size: auto 110px;
+      background-position: bottom 10px center;
+      @include tablet{
+        background-size: auto calc(100% - 12px);
+        background-position: right center;
+      }
+      .card{
+        &__title{
+          &::before{
+            content: '';
+            display: block;
+            width: 68px;
+            height: 68px;
+            background: url('../images/pop__lead--001.svg') no-repeat;
+            background-size: contain;
+            background-position: center;
+            @include tablet{
+              width: 28px;
+              height: 63px;
+              background-position: center top;
+            }
+          }
+          em{
+            color: $color-pink;
+          }
+        }
+      }
+    }
+    &--002{
+      @extend .lead__card;
+      background: $color-white url('../images/illust__lead--002.webp');
+      background-repeat: no-repeat;
+      background-size: auto 110px;
+      background-position: bottom 10px center;
+      @include tablet{
+        background-size: auto calc(100% - 12px);
+        background-position: right center;
+      }
+      .card{
+        &__title{
+          &::before{
+            content: '';
+            display: block;
+            width: 68px;
+            height: 68px;
+            background: url('../images/pop__lead--002.svg') no-repeat;
+            background-size: contain;
+            background-position: center;
+            @include tablet{
+              width: 28px;
+              height: 63px;
+              background-position: center top;
+            }
+          }
+          em{
+            color: $color-green;
+          }
+        }
+      }
+    }
+    &--003{
+      @extend .lead__card;
+      background: $color-white url('../images/illust__lead--003.webp');
+      background-repeat: no-repeat;
+      background-size: auto 110px;
+      background-position: bottom 10px center;
+      @include tablet{
+        background-size: auto calc(100% - 12px);
+        background-position: right center;
+      }
+      .card{
+        &__title{
+          &::before{
+            content: '';
+            display: block;
+            width: 68px;
+            height: 68px;
+            background: url('../images/pop__lead--003.svg') no-repeat;
+            background-size: contain;
+            background-position: center;
+            @include tablet{
+              width: 28px;
+              height: 63px;
+              background-position: center top;
+            }
+          }
+          em{
+            color: $color-pink;
+          }
+        }
+      }
+    }
+  }
+  .card{
+    &__title{
+      font-family: $font-family-secondary;
+      font-size: 20px;
+      line-height: 1.2;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 400;
+      @include tablet{
+        align-items: center;
+        gap: 20px;
+        font-size: 16px;
+        height: 63px;
+        text-align: center;
+      }
+      em{
+        font-style: normal;
+        font-size: 24px;
+        @include tablet{
+          vertical-align: -0.25rem;
+        }
+      }
+    }
+  }
+  &__foot{
+    margin-top: clamp(0.813rem, 0.62rem + 0.79vw, 1.125rem);
+    min-height: clamp(2.813rem, 1.621rem + 4.89vw, 4.75rem);
+    background: url('../images/deco__lead-foot--bottom.svg') no-repeat;
+    background-size: auto clamp(0.75rem, 0.442rem + 1.26vw, 1.25rem);
+    background-position: bottom center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(0.75rem, 0.596rem + 0.63vw, 1rem);
+    text-align: center;
+    &::before{
+      content: '';
+      display: block;
+      width: clamp(0.938rem, 0.476rem + 1.89vw, 1.688rem);
+      height: clamp(1.938rem, 0.976rem + 3.94vw, 3.5rem);
+      background: url('../images/deco__lead-foot--left.svg') no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+    &::after{
+      content: '';
+      display: block;
+      width: clamp(0.938rem, 0.476rem + 1.89vw, 1.688rem);
+      height: clamp(1.938rem, 0.976rem + 3.94vw, 3.5rem);
+      background: url('../images/deco__lead-foot--right.svg') no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+    h3{
+      font-size: clamp(1.063rem, 0.524rem + 2.21vw, 1.938rem);
+      font-family: $font-family-secondary;
+      font-weight: 400;
+      margin-top: 3px;
+      span{
+        color: $color-pink;
+      }
+    }
+  }
+}
+
+// feature
+.feature{
+   margin-top: 12px;
+   @include tablet{
+    margin-top: 19px;
+   }
+   &__wrapper{
+    border: 1px solid $color-line-blue;
+    border-radius: 10px;
+    background: $color-white;
+    margin: auto clamp(1.875rem, 0.875rem + 4.1vw, 3.5rem);
+    padding: 12px;
+    @include tablet{
+     padding: 0;
+     border: none;
+     background: transparent;
+    }
+   }
+   &__head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+    &::before{
+      content: '';
+      display: block;
+      width: clamp(2.438rem, 1.092rem + 5.52vw, 4.625rem);
+      height: clamp(0.5rem, 0.192rem + 1.26vw, 1rem);
+      background: url('../images/deco__feature-title--left.svg') no-repeat;
+      background-size: contain;
+      background-position: center;
+      @include tablet{
+        content: none;
+      }
+    }
+    &::after{
+      content: '';
+      display: block;
+      width: clamp(2.438rem, 1.092rem + 5.52vw, 4.625rem);
+      height: clamp(0.5rem, 0.192rem + 1.26vw, 1rem);
+      background: url('../images/deco__feature-title--right.svg') no-repeat;
+      background-size: contain;
+      background-position: center;
+      @include tablet{
+        content: none;
+      }
+    }
+    h2{
+      font-family: $font-family-secondary;
+      font-size: clamp(0.938rem, 0.745rem + 0.79vw, 1.25rem);
+      font-weight: 500;
+      em{
+        font-family: $font-family-primary;
+        font-size: clamp(1.5rem, 1.231rem + 1.1vw, 1.938rem);
+        font-style: normal;
+        font-weight: 500;
+        margin-right: 5px;
+        vertical-align: -0.2rem;
+      }
+      span{
+        font-size: clamp(1.438rem, 1.168rem + 1.1vw, 1.875rem);
+        color: $color-green;
+        vertical-align: -0.25rem;
+        @include tablet{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          &::before{
+            content: '';
+            display: block;
+            width: clamp(2.438rem, 1.092rem + 5.52vw, 4.625rem);
+            height: clamp(0.5rem, 0.192rem + 1.26vw, 1rem);
+            background: url('../images/deco__feature-title--left.svg') no-repeat;
+            background-size: contain;
+            background-position: center;
+            margin-top: .2rem;
+          }
+          &::after{
+            content: '';
+            display: block;
+            width: clamp(2.438rem, 1.092rem + 5.52vw, 4.625rem);
+            height: clamp(0.5rem, 0.192rem + 1.26vw, 1rem);
+            background: url('../images/deco__feature-title--right.svg') no-repeat;
+            background-size: contain;
+            background-position: center;
+            margin-top: .25rem;
+          }
+        }
+      }
+    }
+  }
+  &__body{
+    margin-top: 15px;
+    @include tablet{
+      margin-top: 8px;
+    }
+  }
+  &__card{
+    padding: 17px 13px 10px;
+    min-height: 350px;
+    @include tablet{
+      padding: 15px 18px;
+      min-height: unset;
+    }
+    &--001{
+      @extend .feature__card;
+      background: $color-white url('../images/fig__feature--001.svg');
+      background-repeat: no-repeat;
+      background-position: center bottom 10px;
+      background-size: clamp(6.125rem, 2.05rem + 16.72vw, 12.75rem) auto;
+      @include tablet{
+        background-position: top 10px right 10px;
+      }
+      .card__title{
+        span{
+          color: $color-green;
+          letter-spacing: .15rem;
+        }
+        &::before{
+          background: $color-green;
+        }
+      }
+    }
+    &--002{
+      @extend .feature__card;
+      background: $color-white url('../images/fig__feature--002.svg');
+      background-repeat: no-repeat;
+      background-position: center bottom 10px;
+      background-size: clamp(6.438rem, 2.132rem + 17.67vw, 13.438rem) auto;
+      @include tablet{
+        background-position: top 10px right 10px;
+      }
+      .card__title{
+        span{
+          color: $color-pink;
+        }
+        &::before{
+          background: $color-pink;
+        }
+      }
+    }
+    &--003{
+      @extend .feature__card;
+      background: $color-white url('../images/fig__feature--003.svg');
+      background-repeat: no-repeat;
+      background-position: center bottom 10px;
+      background-size: clamp(3.688rem, 1.227rem + 10.09vw, 7.688rem) auto;
+      @include tablet{
+        background-position: top 10px right 10px;
+      }
+      .card__title{
+        span{
+          color: $color-green;
+        }
+        &::before{
+          background: $color-green;
+        }
+      }
+    }
+  }
+  .card{
+    &__title{
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-align: center;
+      width: 100%;
+      @include tablet{
+        gap: 5px
+      }
+      &::before{
+        content: counter(feature_num, decimal-leading-zero);
+        counter-increment: feature_num;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: clamp(2.75rem, 2.327rem + 1.74vw, 3.438rem);
+        height: clamp(2.75rem, 2.327rem + 1.74vw, 3.438rem);
+        color: $color-white;
+        border-radius: 50%;
+        font-size: clamp(1.5rem, 1.269rem + 0.95vw, 1.875rem);
+        flex-shrink: 0;
+      }
+      span{
+        flex-grow: 1;
+        font-weight: 500;
+        font-size: 20px;
+        @include tablet{
+          flex-grow: 0;
+          font-size: 18px;
+        }
+
+      }
+    }
+    &__text{
+      margin-top: 12px;
+      font-size: clamp(0.875rem, 0.76rem + 0.47vw, 1.063rem);
+      line-height: 1.6;
+    }
+  }
+  &__foot{
+    margin-top: 18px;
+    h3{
+      text-align: center;
+      font-size: clamp(1.125rem, 0.625rem + 2.05vw, 1.938rem);
+      font-family: $font-family-secondary;
+      color: $color-green;
+      font-weight: 400;
+      span{
+        color: $color-pink;
+        font-weight: 500;
+      }
+    }
+  }
+  &__label{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    @include tablet{
+      gap: 10px;
+      padding: 0 10px;
+    }
+    li{
+      width: clamp(6.938rem, 4.785rem + 8.83vw, 10.438rem);
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.lifestyle{
+  margin-top: 54px;
+  @include tablet{
+    margin-top: 63px;
+  }
+  &__head{
+    text-align: center;
+  }
+  &__title{
+    &-sub{
+      display: inline-block;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 8px 18px;
+      color: $color-green;
+      background: $color-bg-green;
+      border-radius: 50px;
+      @include tablet{
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+    }
+    &-main{
+      margin-top: 10px;
+      font-family: $font-family-secondary;
+      font-size: clamp(1.563rem, 1.332rem + 0.95vw, 1.938rem);
+      font-weight: 500;
+      line-height: 1.2;
+      span{
+        color: $color-green;
+      }
+    }
+  }
+  &__text{
+    margin-top: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    color: $color-green;
+    @include tablet{
+      font-size: 15px;
+      line-height: 1.2;
+    }
+  }
+  &__body{
+    margin-top: clamp(1.688rem, 1.265rem + 1.74vw, 2.375rem);
+    @include tablet{
+      padding: 0 14.36%;
+    }
+  }
+  &__card{
+    border:1px solid $color-green!important;
+    .card{
+      &__head{
+        position: relative;
+      }
+      &__pic{
+        width: 100%;
+        height: 100%;
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+      &__label{
+        position: absolute;
+        bottom: 10px;
+        left: 8px;
+        @include tablet{
+          left: 4px;
+          img{
+            width: 110px;
+            height: auto;
+          }
+        }
+      }
+      &__body{
+        padding: 8px;
+      }
+      &__text{
+        font-size: 17px;
+        margin-bottom: 23px;
+        @include tablet{
+          font-size: 14px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+    .tag{
+      &__item{
+        img{
+          @include tablet{
+            width: auto;
+            height: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.final{
+  &__head{
+    @include tablet{
+      background: url('../images/bg__body__foot--sp.svg') no-repeat;
+      background-size: 95% auto;
+      background-position: center;
+    }
+    h2{
+      font-family: $font-family-secondary;
+      font-size: clamp(2.125rem, 1.125rem + 4.1vw, 3.75rem);
+      text-align: center;
+      color: $color-green;
+      font-weight: 400;
+      span{
+        color: $color-pink;
+      }
+    }
+    p{
+      margin-top: clamp(1.5rem, 1.116rem + 1.58vw, 2.125rem);
+      font-size: clamp(0.875rem, 0.491rem + 1.58vw, 1.5rem);
+      text-align: center;
+    }
+  }
+  &__body{
+    margin: clamp(1.25rem, -0.288rem + 6.31vw, 3.75rem) 5% auto;
+    @include tablet{
+      margin: clamp(1.25rem, -0.288rem + 6.31vw, 3.75rem) 12% auto;
+      gap: 10px;
+    }
+  }
+  &__card{
+    flex: 0 0 calc(20% - 16px)!important;
+    padding: 124px 6px 30px;
+    @include tablet{
+      flex: 0 0 100%!important;
+      padding: 15px 75px 15px 15px;
+    }
+    &--001{
+      @extend .final__card;
+      background: $color-white url('../images/fig__body-foot-001.svg');
+      background-repeat: no-repeat;
+      background-size: 44px auto;
+      background-position: center top 40px;
+      @include tablet{
+        background-size: 35px auto;
+        background-position: right 24px center;
+      }
+    }
+    &--002{
+      @extend .final__card;
+      background: $color-white url('../images/fig__body-foot-002.svg');
+      background-repeat: no-repeat;
+      background-size: 70px auto;
+      background-position: center top 40px;
+      @include tablet{
+        background-size: 56px auto;
+        background-position: right 11px center;
+      }
+    }
+    &--003{
+      @extend .final__card;
+      background: $color-white url('../images/fig__body-foot-003.svg');
+      background-repeat: no-repeat;
+      background-size: 52px auto;
+      background-position: center top 40px;
+      @include tablet{
+        background-size: 42px auto;
+        background-position: right 19px center;
+      }
+    }
+    &--004{
+      @extend .final__card;
+      background: $color-white url('../images/fig__body-foot-004.svg');
+      background-repeat: no-repeat;
+      background-size: 51px auto;
+      background-position: center top 40px;
+      @include tablet{
+        background-size: 41px auto;
+        background-position: right 21px center;
+      }
+    }
+    &--005{
+      @extend .final__card;
+      background: $color-white url('../images/fig__body-foot-005.svg');
+      background-repeat: no-repeat;
+      background-size: 64px auto;
+      background-position: center top 40px;
+      @include tablet{
+        background-size: 51px auto;
+        background-position: right 15px center;
+      }
+    }
+    .card{
+      &__label{
+        font-size: 17px;
+        font-weight: 500;
+        color: $color-green;
+        text-align: center;
+        @include tablet{
+          font-size: 15px;
+        }
+      }
+      &__text{
+        font-size: 14px;
+        text-align: center;
+        margin-top: 15px;
+        @include tablet{
+          font-size: 12px;
+          text-align: left;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  &__foot{
+    margin-top: 66px;
+    border: 1px solid $color-line-blue;
+    border-radius: 10px;
+    min-height: 442px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background: $color-white url('../images/illust__body-foot.webp');
+    background-repeat: no-repeat;
+    background-size: 55% auto;
+    background-position: left 10px center;
+    padding: 0 25px 0 58%;
+    @include tablet{
+      margin: 60px 12px auto;
+      display: block;
+      padding: 25px 10px 20px;
+      background-size: 95% auto;
+      background-position: center top 25%;
+    }
+    &-wrapper{
+      flex: 0 0 100%;
+    }
+    h2{
+      font-family: $font-family-secondary;
+      font-size: clamp(1.563rem, 1.332rem + 0.95vw, 1.938rem);
+      color: $color-green;
+      font-weight: 400;
+      @include tablet{
+        text-align: center;
+      }
+    }
+    p{
+      margin-top: 25px;
+      font-size: 17px;
+      line-height: 2;
+      @include tablet{
+        margin-top: 75vw;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    .tag{
+      &__list{
+        margin-top: clamp(2.25rem, 1.212rem + 4.26vw, 3.938rem);
+        flex-wrap: nowrap;
+        @include tablet{
+          gap: 10px;
+          justify-content: center;
+        }
+      }
+      &__item{
+        width: clamp(6.563rem, 6.178rem + 1.58vw, 7.188rem);
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+.cta{
+  &__head{
+    text-align: center;
+  }
+  &__title{
+    &-eyebrow{
+      display: inline-block;
+      font-size: clamp(0.625rem, 0.317rem + 1.26vw, 1.125rem);
+      font-weight: 500;
+      color: $color-green;
+      background: $color-alpha-green;
+      border-radius: 50px;
+      padding: 10px 25px;
+      box-shadow: 4px 4px 8px rgba(77,153,139, .25);
+      @include tablet{
+        padding: 5px 15px;
+      }
+    }
+    &-main{
+      margin-top: 18px;
+      text-align: center;
+      @include tablet{
+        margin-top: 8px;
+      }
+      img{
+        margin: auto;
+        width: 52%;
+        height: auto;
+        @include tablet{
+          width: 70%;
+        }
+      }
+    }
+  }
+  &__text{
+    margin-top: 15px;
+    @include tablet{
+      margin-top: 8px;
+    }
+    img{
+      width: 42.8%;
+      height: auto;
+      margin: auto;
+      @include tablet{
+        width: 58%;
+      }
+    }
+  }
+  &__foot{
+    margin-top: clamp(0.875rem, 0.221rem + 2.68vw, 1.938rem);
+    .store{
+      &__list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(0.5rem, 0.192rem + 1.26vw, 1rem);
+      }
+      &__item{
+        img{
+          width: auto;
+          height: clamp(1.719rem, 0.661rem + 4.34vw, 3.438rem);
+        }
+      }
+    }
+  }
+}
+
+.footer{
+  &__head{
+    padding-top: clamp(0.625rem, -0.144rem + 3.15vw, 1.875rem);
+    padding-bottom: clamp(3.938rem, -1.022rem + 20.35vw, 12rem);
+    background: $color-white url('../images/bg__company.webp');
+    background-repeat: no-repeat;
+    background-size: auto clamp(3.938rem, -1.022rem + 20.35vw, 12rem);
+    background-position: center bottom;
+    .company{
+      &__info{
+        padding:0 15.6%;
+        @include tablet{
+          padding: 0 5.1%;
+        }
+        h3{
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1;
+          padding: 2px 0 2px 4px;
+          border-left: 3px solid $color-black;
+          letter-spacing: .25rem;
+          @include tablet{
+            font-size: 12px;
+          }
+        } 
+      }
+      &__list{
+        margin-top: clamp(0.75rem, 0.673rem + 0.32vw, 0.875rem);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        &-title{
+          flex: 0 0 5rem;
+          font-size: clamp(0.625rem, 0.471rem + 0.63vw, 0.875rem);
+          padding-right: 1rem;
+          text-align: justify;
+          margin-bottom: .5rem;
+          letter-spacing: .25rem;
+        }
+        &-desc{
+          flex: 0 0 calc(100% - 5rem);
+          font-size: clamp(0.625rem, 0.471rem + 0.63vw, 0.875rem);
+          margin-bottom: .5rem;
+          letter-spacing: .25rem;
+          @include tablet{
+            letter-spacing: 0;
+          }
+        }
+      }
+    }
+  }
+  &__body{
+    background: $color-bg-black;
+    padding-top: clamp(1.5rem, 1.231rem + 1.1vw, 1.938rem);
+    padding-bottom: clamp(0.938rem, 0.438rem + 2.05vw, 1.75rem);
+    .app{
+      &__info{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        @include tablet{
+          padding: 0 12px;
+        }
+      }
+      &__logo{
+        img{
+          width: clamp(11.25rem, -2.975rem + 58.36vw, 34.375rem);
+          height: auto;
+        }
+      }
+      &__text{
+        margin-top: clamp(0.625rem, 0.164rem + 1.89vw, 1.375rem);
+        color: $color-white;
+        font-size: clamp(0.625rem, 0.394rem + 0.95vw, 1rem);
+        line-height: 1.8;
+      }
+      &__sns{
+        .sns{
+          &__list{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+          }
+          &__item{
+            &:first-child{
+              img{
+                width: clamp(1.125rem, 0.433rem + 2.84vw, 2.25rem);
+                height: auto;
+              }
+            }
+            &:last-child{
+              img{
+                width: clamp(3.125rem, 1.203rem + 7.89vw, 6.25rem);
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__foot{
+    margin-top: clamp(3.75rem, -2.248rem + 24.61vw, 13.5rem);
+    background: $color-bg-black;
+    padding: clamp(0.75rem, 0.519rem + 0.95vw, 1.125rem) 0;
+    .charge{
+      text-align: right;
+      padding-right: 1rem;
+      a{
+        color: $color-white;
+        font-size: clamp(0.813rem, 0.543rem + 1.1vw, 1.25rem);
+        font-weight: 500;
+        img{
+          display: inline;
+          vertical-align: middle;
+          width: clamp(1.688rem, 0.649rem + 4.26vw, 3.375rem);
+          height: auto;
+          margin-right: .5rem;
+        }
+      }
+    }
+  }
+}
